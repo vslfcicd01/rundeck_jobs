@@ -1,0 +1,30 @@
+<joblist>
+  <job>
+    <description>Get hostname for all servers. another change..</description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>false</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>Datacenter1/ProjDev/Linux/Application</group>
+    <id>7a7dcd7b-55b1-4bab-a008-bc5b594912ad</id>
+    <loglevel>INFO</loglevel>
+    <name>Get_Hostname</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: vslfcicdtriapp3</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='true' strategy='parallel'>
+      <command>
+        <description>Get hostname for server</description>
+        <exec>hostname;</exec>
+      </command>
+    </sequence>
+    <uuid>7a7dcd7b-55b1-4bab-a008-bc5b594912ad</uuid>
+  </job>
+</joblist>
