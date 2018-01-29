@@ -1,6 +1,6 @@
 <joblist>
   <job>
-    <description>Get hostname for all servers. another change..</description>
+    <description>Get hostname for all servers. </description>
     <dispatch>
       <excludePrecedence>true</excludePrecedence>
       <keepgoing>false</keepgoing>
