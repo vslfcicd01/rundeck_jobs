@@ -1,0 +1,27 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>Datacenter1/ProjDev/Linux/Application/Supporting_Software</group>
+    <id>21dc27c0-f0d2-4da4-aed0-ab60ede2864c</id>
+    <loglevel>INFO</loglevel>
+    <name>setup_ALL_nodes_app3</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='true' strategy='node-first'>
+      <command>
+        <description>setup supporting software on app3</description>
+        <jobref group='Datacenter1/ProjDev/Linux/Application/Supporting_Software' name='setup_slave_ss_app3' nodeStep='true' />
+      </command>
+      <command>
+        <description>setup osquery on app3</description>
+        <jobref group='Datacenter1/ProjDev/Linux/Application/Supporting_Software' name='setup_slave_osquery_app3' nodeStep='true' />
+      </command>
+      <command>
+        <description>setup jdk on app3</description>
+        <jobref group='Datacenter1/ProjDev/Linux/Application/Supporting_Software' name='setup_jdk_nodes_app3' nodeStep='true' />
+      </command>
+    </sequence>
+    <uuid>21dc27c0-f0d2-4da4-aed0-ab60ede2864c</uuid>
+  </job>
+</joblist>
