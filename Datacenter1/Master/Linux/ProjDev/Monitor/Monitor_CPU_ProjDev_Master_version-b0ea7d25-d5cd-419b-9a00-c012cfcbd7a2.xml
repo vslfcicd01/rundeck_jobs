@@ -1,0 +1,29 @@
+<joblist>
+  <job>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>false</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>Datacenter1/Master/Linux/ProjDev/Monitor</group>
+    <id>b0ea7d25-d5cd-419b-9a00-c012cfcbd7a2</id>
+    <loglevel>INFO</loglevel>
+    <name>Monitor_CPU_ProjDev_Master_version</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: vslfcicdtriapp3</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='true' strategy='node-first'>
+      <command>
+        <exec>cd /home/app3/apps/repo;  ./get_cpu.sh;</exec>
+      </command>
+    </sequence>
+    <uuid>b0ea7d25-d5cd-419b-9a00-c012cfcbd7a2</uuid>
+  </job>
+</joblist>
