@@ -1,0 +1,46 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>Datacenter1/Master/Linux/ProjDev/Monitor</group>
+    <id>ea8c2d61-f44b-4f24-9801-165a8b120c5d</id>
+    <loglevel>INFO</loglevel>
+    <name>Monitor_WFs_ProjDev_Master_version</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <notification>
+      <onsuccess>
+        <email attachLog='true' recipients='saptarshide@valudconsulting.com' subject='Success workflow monitor' />
+      </onsuccess>
+    </notification>
+    <schedule>
+      <month month='*' />
+      <time hour='05' minute='51' seconds='0' />
+      <weekday day='*' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='true' strategy='node-first'>
+      <command>
+        <description>monitor workflows</description>
+        <script><![CDATA[hostname; 
+cd /home/vslfcicd01/valuD_src/vslfcicd01-master;
+source bin/activate; 
+cd ../;
+ls -al;
+cd rundeck-src/accelerator;
+python3.5 ValuD_Controller.py --wf_mon yes --wf_host  192.227.84.67 --wf_port  50000 --wf_sid  projdev_tridev1_src --wf_protocol  TCPIP --wf_user  tridev1 --wf_password  tridev1 --wf_database  tridev1 --wf_schema tridev1 --wf_type DB2 --wf_start_time "02/21/2018 12:10:00 PM" --wf_end_time "02/21/2018 23:00:00 PM"]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <jobref group='Datacenter1/Master/Linux/ProjDev/Monitor' name='Monitor_CPU_ProjDev_Master_version' nodeStep='true' />
+      </command>
+      <command>
+        <jobref group='Datacenter1/Master/Linux/ProjDev/Monitor' name='Monitor_Memory_ProjDev_Master_version' nodeStep='true' />
+      </command>
+      <command>
+        <exec>echo "http://192.227.84.71:19999/tv.html"</exec>
+      </command>
+    </sequence>
+    <uuid>ea8c2d61-f44b-4f24-9801-165a8b120c5d</uuid>
+  </job>
+</joblist>
