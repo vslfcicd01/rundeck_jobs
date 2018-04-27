@@ -1,0 +1,54 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>Datacenter1/Master/Linux/ProjDev/Diff</group>
+    <id>566024e9-b9a0-4e75-afb4-34f762a25980</id>
+    <loglevel>INFO</loglevel>
+    <name>Roll_Back_DIFF_ProjDev_Master_version</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <notification>
+      <onsuccess>
+        <email attachLog='true' recipients='john.malmin@slatefire.com' subject='Testing Diff output' />
+      </onsuccess>
+    </notification>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='true' strategy='node-first'>
+      <command>
+        <description>get source server information</description>
+        <script><![CDATA[hostname; 
+cd /home/vslfcicd01/valuD_src/vslfcicd01-master;
+source bin/activate; 
+cd ../;
+ls -al;
+cd rundeck-src/accelerator;
+python3.5 ValuD_Controller.py --a custom_db_name --ts_host  192.227.84.67 --ts_port  50000 --ts_sid  projdev_tridev1_src --ts_protocol  TCPIP --ts_user  tridev1 --ts_password  tridev1 --ts_database  tridev1 --ts_schema tridev1 --ts_type DB2 --ts_prefix tri --dbname diff_sqlite.db
+]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <description>get destination server information</description>
+        <script><![CDATA[hostname; 
+cd /home/vslfcicd01/valuD_src/vslfcicd01-master;
+source bin/activate; 
+cd ../;
+ls -al;
+cd rundeck-src/accelerator;
+python3.5 ValuD_Controller.py --a custom_db_name --td_host  192.227.84.67 --td_port  50000 --td_sid projtest_tridev2_src --td_protocol  TCPIP --td_user tridev2 --td_password  tridev2 --td_database  tridev2 --td_schema  tridev2 --td_type DB2 --td_prefix tri --dbname diff_sqlite.db]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <description>Do Diff between source and destination servers</description>
+        <script><![CDATA[hostname; 
+cd /home/vslfcicd01/valuD_src/vslfcicd01-master;
+source bin/activate; 
+cd ../;
+ls -al;
+cd rundeck-src/accelerator;
+python3.5 ValuD_Controller.py --ts_sid_src projdev_tridev1_src --td_sid_dest projtest_tridev2_src --ts_type DB2 --dbname diff_sqlite.db]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>566024e9-b9a0-4e75-afb4-34f762a25980</uuid>
+  </job>
+</joblist>
