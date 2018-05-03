@@ -1,0 +1,51 @@
+<joblist>
+  <job>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>false</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>Datacenter1/Master/Linux/ProjDev/OM</group>
+    <id>4b1abebe-04b5-45d2-86ff-742b72d3fd6c</id>
+    <loglevel>INFO</loglevel>
+    <name>Transfer_Daily_OM_ProjDev_to_ProjTest_Master_version</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>name: vslfcicdtriapp3</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>create daily om for app3 8001 server</description>
+        <script><![CDATA[hostname; 
+cd /home/app3/apps/tririga-3.5.3-8001/userfiles/ObjectMigration;
+pwd;
+ls -al;
+chmod 777 *.zip;
+ls -al;
+]]></script>
+        <scriptargs />
+      </command>
+      <command>
+        <exec>hostname; cd /home/app3/apps/tririga-3.5.3-8001/userfiles/ObjectMigration; ls -al; pwd; cp *.zip /home/app3/apps/tririga-3.5.3-9001/userfiles/ObjectMigration/UploadsWithImport</exec>
+      </command>
+      <command>
+        <script><![CDATA[hostname; 
+cd /home/app3/apps/tririga-3.5.3-8001/userfiles/ObjectMigration;
+pwd;
+ls -al;
+mv *.zip archive;
+ls -al;
+cd archive;
+ls -al;]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>4b1abebe-04b5-45d2-86ff-742b72d3fd6c</uuid>
+  </job>
+</joblist>
